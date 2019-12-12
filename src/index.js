@@ -19,3 +19,8 @@ const projects = [
     "short_desc": "This was my first build week at Lambda School. We were tasked with creating a list-keeping app to help manage people tasks throughout the day. I created the landing page and part of the React app"
   }
 ];
+
+const typeDefs = `
+  type Query { projects: [Project] }
+  type Project { img_src: String, title: String, git_link: String, deploy_link: String, short_desc: String }
+`;
