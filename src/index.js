@@ -13,8 +13,8 @@ mongoose.connect('mongodb://localhost/portfolio', {useNewUrlParser: true});
 const addProjects = async () => {
   try {
     projects.map(proj => {
-      if(proj["article"]) {
-        proj.article = fs.readFileSync(`${__dirname}/../content/markdown/${article}`, 'utf-8');
+      if(proj.article) {
+        proj.article = fs.readFileSync(`${__dirname}/../content/markdown/${proj.article}`, 'utf-8');
         return proj
       }
     })
