@@ -1,4 +1,4 @@
-import projectModel from '../models/projectModel';
+const projectModel = require('../models/projectModel');
 export default {
   Query: {
     async projects() {
