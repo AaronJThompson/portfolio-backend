@@ -1,5 +1,8 @@
-const express = require('express');
-const { ApolloServer, gql } = require('apollo-server-express');
+import express from 'express';
+import cors from 'cors';
+import { ApolloServer } from 'apollo-server-express';
+import typeDefs from './schemas';
+import resolvers from './resolvers';
 
 // Test data
 const projects = [
@@ -18,20 +21,12 @@ const projects = [
   }
 ];
 
-const typeDefs = gql`
-  type Query { projects: [Project] }
-  type Project { img_src: String, title: String, git_link: String, deploy_link: String, short_desc: String }
-`;
-
-const resolvers = {
-  Query: { projects: () => projects },
-};
-
 const app = express();
+app.use(cors());
 
 const server = new ApolloServer({ typeDefs, resolvers });
-server.applyMiddleware({ app });
+server.applyMiddleware({ app, path: '/graphql' });
 
 app.listen(4000, () => {
-  console.log(`Go to http://localhost:4000/${server.graphqlPath} to run queries!`);
+  console.log(`Go to http://localhost:4000/graphql to run queries!`);
 });
