@@ -12,7 +12,6 @@ export default gql`
   }
 
   extend type Query {
-    project(title: String!): Project
     projects: [Project]
   }
 `
