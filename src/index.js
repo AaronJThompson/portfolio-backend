@@ -5,7 +5,7 @@ const { ApolloServer } = require('apollo-server-express');
 const mongoose = require('mongoose');
 const typeDefs = require('./schemas');
 const projectModel = require('./models/projectModel');
-const resolvers = require('./resolvers');
+const resolvers = require('./resolvers/projectResolver');
 
 mongoose.connect('mongodb://localhost/portfolio', {useNewUrlParser: true});
 

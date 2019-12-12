@@ -1,5 +1,5 @@
 const projectSchema = require('./projectSchema');
-const { gql } = require('apollo-server');
+const { gql } = require('apollo-server-express');
 
 const linkSchema = gql`
   type Query {
