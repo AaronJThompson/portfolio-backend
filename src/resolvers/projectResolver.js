@@ -1,5 +1,5 @@
 const projectModel = require('../models/projectModel');
-export default {
+module.exports = {
   Query: {
     async projects() {
       const projects = await projectModel.find({}).exec();

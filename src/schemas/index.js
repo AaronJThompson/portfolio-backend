@@ -10,4 +10,4 @@ const linkSchema = gql`
   }
 `;
 
-export default [linkSchema, projectSchema];
+module.exports = [linkSchema, projectSchema];
