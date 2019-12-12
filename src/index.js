@@ -1,25 +1,32 @@
 import express from 'express';
 import cors from 'cors';
+import fs from 'fs';
 import { ApolloServer } from 'apollo-server-express';
+import mongoose from 'mongoose';
 import typeDefs from './schemas';
+import projectModel from './models/projectModel';
 import resolvers from './resolvers';
 
-// Test data
-const projects = [
-  {
-    "img_src": "https://imgur.com/NjLjiJS.png",
-    "title": "Sleep Tracker",
-    "git_link": "https://github.com/build-week-sleep-tracker",
-    "deploy_link": "https://bw-sleep-tracker-fe.netlify.com/",
-    "short_desc": "Sleep Tracker is an app enabling users to track their sleep and receive feedback and recommendations on their sleep patterns. This was built by 6 developers in 1 week"
-  },
-  {
-    "img_src": "https://imgur.com/nCcmSTl.png",
-    "title": "Wunderlist 2.0",
-    "git_link": "https://github.com/team-wunderlist",
-    "short_desc": "This was my first build week at Lambda School. We were tasked with creating a list-keeping app to help manage people tasks throughout the day. I created the landing page and part of the React app"
+mongoose.connect('mongodb://localhost/portfolio', {useNewUrlParser: true});
+
+const addProjects = async () => {
+  const projects = fs.readFileSync(__dirname + '/content/projects.json', 'utf-8');
+  try {
+    await projectModel.insertMany(projects);
+    console.log('Projects loaded in');
+  } catch(e) {
+    console.log(e);
+    process.exit();
   }
-];
+}
+
+var db = mongoose.connection;
+db.on('error', ()=> {console.log( '---FAILED to connect to mongoose')})
+db.once('open', async () => {
+  console.log( '+++Connected to mongoose')
+  await addProjects();
+})
+
 
 const app = express();
 app.use(cors());
