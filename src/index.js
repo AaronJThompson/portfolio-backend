@@ -12,6 +12,7 @@ mongoose.connect('mongodb://localhost/portfolio', {useNewUrlParser: true});
 
 const addProjects = async () => {
   try {
+    await projectModel.remove({}).exec()
     await projectModel.insertMany(projects);
     console.log('Projects loaded in');
   } catch(e) {
