@@ -10,7 +10,7 @@ import resolvers from './resolvers';
 mongoose.connect('mongodb://localhost/portfolio', {useNewUrlParser: true});
 
 const addProjects = async () => {
-  const projects = fs.readFileSync(__dirname + '/content/projects.json', 'utf-8');
+  const projects = fs.readFileSync(__dirname + '../content/projects.json', 'utf-8');
   try {
     await projectModel.insertMany(projects);
     console.log('Projects loaded in');
