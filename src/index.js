@@ -6,11 +6,11 @@ const mongoose = require('mongoose');
 const typeDefs = require('./schemas');
 const projectModel = require('./models/projectModel');
 const resolvers = require('./resolvers/projectResolver');
+const projects = require('../content/projects');
 
 mongoose.connect('mongodb://localhost/portfolio', {useNewUrlParser: true});
 
 const addProjects = async () => {
-  const projects = fs.readFileSync(__dirname + '../content/projects.json', 'utf-8');
   try {
     await projectModel.insertMany(projects);
     console.log('Projects loaded in');
