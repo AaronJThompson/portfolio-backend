@@ -19,7 +19,7 @@ const addProjects = async () => {
       }
     })
     await projectModel.deleteMany({}).exec();
-    await projectModel.insertMany(projects).exec();
+    await projectModel.insertMany(projects);
     console.log('Projects loaded in');
   } catch(e) {
     console.log(e);
