@@ -1,11 +1,11 @@
-import express from 'express';
-import cors from 'cors';
-import fs from 'fs';
-import { ApolloServer } from 'apollo-server-express';
-import mongoose from 'mongoose';
-import typeDefs from './schemas';
-import projectModel from './models/projectModel';
-import resolvers from './resolvers';
+const express = require('express');
+const cors = require('cors');
+const fs = require('fs');
+const { ApolloServer } = require('apollo-server-express');
+const mongoose = require('mongoose');
+const typeDefs = require('./schemas');
+const projectModel = require('./models/projectModel');
+const resolvers = require('./resolvers');
 
 mongoose.connect('mongodb://localhost/portfolio', {useNewUrlParser: true});
 
